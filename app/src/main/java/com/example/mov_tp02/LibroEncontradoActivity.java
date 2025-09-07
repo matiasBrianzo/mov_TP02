@@ -32,6 +32,8 @@ public class LibroEncontradoActivity extends AppCompatActivity {
             @Override
             public void onChanged(Libros libros) {
                 binding.tvTitle.setText(libros.getAutor());
+                binding.tvDescription.setText(libros.getDescripcion());
+
                 binding.ivCover.setImageResource(libros.getFoto());
             }
         });

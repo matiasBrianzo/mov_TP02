@@ -13,7 +13,6 @@ import com.example.mov_tp02.Repository.LibrosRepository;
 
 public class MainActivityViewModel extends AndroidViewModel {
     private final LibrosRepository repo;
-    private MutableLiveData<Libros> mutableLibro= new MutableLiveData<>();
     private MutableLiveData<String> mutableError= new MutableLiveData<>();
 
     public MainActivityViewModel(@NonNull Application application) {
@@ -29,22 +28,17 @@ public void BuscarLibro(String Titulo){
         for (Libros l:repo.listaLibros){
             if (l.getAutor().toLowerCase().equals(t))
             {
-                mutableLibro.setValue(l);
                 Intent intent= new Intent(getApplication(), LibroEncontradoActivity.class);
                 intent.putExtra("libroEncontrado",l);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getApplication().startActivity(intent);
             }
-
         }
 }
-
     public LiveData<String> getMutableError(){
         if(mutableError==null)
             mutableError = new MutableLiveData<>();
         return mutableError;
     }
-
-
 }
 
